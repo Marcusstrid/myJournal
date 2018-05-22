@@ -3,7 +3,7 @@
 session_start();
 
 
- 
+ include('..config.php');
 // If session variable is not set it will redirect to login page
 if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
   header("location: login.php");
@@ -47,7 +47,7 @@ if(isset($_POST['title'])){
    
 
         
-    </style>
+    
 </head>
 <body>
     <div class="page-header">
