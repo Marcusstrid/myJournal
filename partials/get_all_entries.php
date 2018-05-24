@@ -1,19 +1,25 @@
+
 <?php
 
+include('config.php');
 
-$stmt = $link->prepare('SELECT entryID, title, content, createdAt FROM journal WHERE UserID  = :UserID');
-$stmt->execute(array(':entryID' => $_GET['id']));
-$row = $stmt->fetch();
 
-if($row['entryID'] == ''){
-    header('Location: ./welcome.php');
-    exit;
+$result = mysqli_query($link,"SELECT * FROM entries");
+
+echo "<table border='1'>
+<tr>
+<th>title</th>
+<th>content</th>
+</tr>";
+
+while($row = mysqli_fetch_array($result))
+{
+echo "<tr>";
+echo "<td>" . $row['title'] . "</td>";
+echo "<td>" . $row['content'] . "</td>";
+echo "</tr>";
 }
-echo '<div>';
-    echo '<h1>'.$row['title'].'</h1>';
-    echo '<p>Posted on '.date('jS M Y', strtotime($row['createdAt'])).'</p>';
-    echo '<p>'.$row['content'].'</p>';                
-echo '</div>';
+echo "</table>";
 
-var_dump($row);
+mysqli_close($link);
 ?>

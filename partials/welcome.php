@@ -29,17 +29,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
     </div>
     <p><a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a></p>
 
-    <div id="wrapper">
-         <div id ="content">
-             <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
-             <label>Title:</label><input type="text" name="title"/>
-             <label for="content">Content:</label>
-             <textarea name="content" cols=40 rows=10></textarea>
-             <br />
-             <input type="submit" name="submit" value="Submit">
-              </form>
-         </div>
-    </div>
+   
 </body>
 </html>
 
@@ -74,18 +64,24 @@ mysqli_close($link);
 <title>Add Record Form</title>
 </head>
 <body>
-<form action="insert.php" method="post">
+<form action="welcome.php" method="post">
     <p>
-        <label for="title">title:</label>
+        <label for="title">Title:</label>
         <input type="text" name="title" id="title">
     </p>
     <p>
-        <label for="content"> content:</label>
-        <input type="text" name="content" id="content">
+        <label for="content"> Content:</label>
+        <textarea type="text" name="content" id="content" cols=40 rows=10></textarea>
     </p>
   
     <input type="submit" value="Submit">
 </form>
+
+
+<?php  include('get_all_entries.php')?>
+
+
+
 </body>
 </html>
 
@@ -94,4 +90,3 @@ mysqli_close($link);
 
 
 
-<?php include(get_all_entries.php);  ?>
